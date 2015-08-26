@@ -6,11 +6,13 @@
     */
     require_once "src/Author.php";
     require_once "src/Book.php";
+
     $server = 'mysql:host=localhost;dbname=library_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
-    class CourseTest extends PHPUnit_Framework_TestCase
+
+    class AuthorTest extends PHPUnit_Framework_TestCase
     {
         protected function tearDown()
         {
@@ -21,7 +23,7 @@
         function test_getName()
         {
             //Arrange
-            $name = "High Times";
+            $name = "J.K. Rowling";
             $test_author = new Author($name);
             //Act
             $result = $test_author->getName();
@@ -33,7 +35,7 @@
         function test_save()
         {
             //Arrange
-            $name = "Gavanese Jamelan";
+            $name = "C.S. Lewis";
             $test_author = new Author($name);
             $test_author->save();
 
@@ -48,11 +50,11 @@
         function test_getAll()
         {
             //Arrange
-            $name = "High Times";
+            $name = "J.K. Rowling";
             $test_author = new Author($name);
             $test_author->save();
 
-            $name2 = "Gavanese Jamelan";
+            $name2 = "C.S. Lewis";
             $test_author2 = new Author($name2);
             $test_author2->save();
 
@@ -67,10 +69,10 @@
         function test_deleteAll()
         {
             //Arrange
-            $name = "High Times";
+            $name = "J.K. Rowling";
             $test_author = new Author($name);
             $test_author->save();
-            $name2 = "Gavanese Jamelan";
+            $name2 = "C.S. Lewis";
             $test_author2 = new Author($name2);
             $test_author2->save();
             //Act
@@ -83,7 +85,7 @@
         function test_update()
         {
             //Arrange
-            $name = "High Times";
+            $name = "J.K. Rowling";
             $test_author = new Author($name);
             $test_author->save();
             //Act
@@ -97,11 +99,11 @@
         function test_find()
         {
             //Arrange
-            $name = "High Times";
+            $name = "J.K. Rowling";
             $test_author = new Author($name);
             $test_author->save();
 
-            $name2 = "Gavanese Jamelan";
+            $name2 = "C.S. Lewis";
             $test_author2 = new Author($name2);
             $test_author2->save();
 
@@ -115,10 +117,10 @@
         function test_delete()
         {
             //Arrange
-            $name = "High Times";
+            $name = "J.K. Rowling";
             $test_author = new Author($name);
             $test_author->save();
-            $name2 = "Gavanese Jamelan";
+            $name2 = "C.S. Lewis";
             $test_author2 = new Author($name2);
             $test_author2->save();
             //Act
