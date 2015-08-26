@@ -17,7 +17,7 @@
         protected function tearDown()
         {
             Author::deleteAll();
-            //  Book::deleteAll();
+            Book::deleteAll();
         }
 
         function test_getName()
@@ -77,6 +77,7 @@
             $test_author2->save();
             //Act
             Author::deleteAll();
+
             //Assert
             $result = Author::getAll();
             $this->assertEquals([], $result);
@@ -120,12 +121,15 @@
             $name = "J.K. Rowling";
             $test_author = new Author($name);
             $test_author->save();
+
             $name2 = "C.S. Lewis";
             $test_author2 = new Author($name2);
             $test_author2->save();
+
             //Act
             $test_author->delete();
             $result = Author::getAll();
+
             //Assert
             $this->assertEquals($test_author2, $result[0]);
         }
@@ -135,9 +139,6 @@
             //Arrange
             $test_author = new Author("J.K. Rowling");
             $test_author->save();
-
-            $test_author2 = new Author("Harry Potter");
-            $test_author2->save();
 
             $test_book = new Book("Harry Potter and the Dish Stone", "Non-fiction");
             $test_book->save();

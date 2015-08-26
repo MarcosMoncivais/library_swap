@@ -51,10 +51,10 @@
     }
 
     //These methods involve the other class
-    function addBook($book)
+    function addBook($new_book)
     {
         $GLOBALS['DB']->exec("INSERT INTO authors_books (book_id, author_id) VALUES (
-            {$book->getId()},
+            {$new_book->getId()},
             {$this->getId()}
         );");
     }
@@ -64,7 +64,7 @@
         $books_query = $GLOBALS['DB']->query(
             "SELECT books.* FROM
                 authors JOIN authors_books ON (authors_books.author_id = authors.id)
-                        JOIN books    ON (authors_books.book_id = books.id)
+                        JOIN books ON (authors_books.book_id = books.id)
              WHERE authors.id = {$this->getId()};
             "
         );
@@ -73,7 +73,8 @@
         foreach ($books_query as $book) {
             $title = $book['title'];
             $genre = $book['genre'];
-            $new_book = new Book($title, $genre);
+            $id = $book['id'];
+            $new_book = new Book($title, $genre, $id);
             array_push($matching_books, $new_book);
         }
         return $matching_books;
