@@ -43,38 +43,42 @@
         $GLOBALS['DB']->exec("UPDATE authors SET name = '{$new_name}' WHERE id = {$this->getId()};");
         $this->setName($new_name);
     }
+
     function delete()
     {
         $GLOBALS['DB']->exec("DELETE FROM authors WHERE id = {$this->getId()};");
-        //$GLOBALS['DB']->exec("DELETE FROM books WHERE course_id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM books WHERE book_id = {$this->getId()};");
     }
-    // These methods involve the other class
-    // function addBook($book)
-    // {
-    //     $GLOBALS['DB']->exec("INSERT INTO enrollments (student_id, course_id) VALUES (
-    //         {$student->getId()},
-    //         {$this->getId()}
-    //     );");
-    // }
-    // function getStudents()
-    // {
-    //     $students_query = $GLOBALS['DB']->query(
-    //         "SELECT students.* FROM
-    //             author JOIN enrollments ON (enrollments.course_id = courses.id)
-    //                     JOIN students    ON (enrollments.student_id = students.id)
-    //          WHERE courses.id = {$this->getId()};
-    //         "
-    //     );
-    //     $matching_students = array();
-    //     foreach ($students_query as $student) {
-    //         $name = $student['name'];
-    //         $enroll_date = $student['enroll_date'];
-    //         $id = $student['id'];
-    //         $new_student = new Student($name, $enroll_date, $id);
-    //         array_push($matching_students, $new_student);
-    //     }
-    //     return $matching_students;
-    // }
+
+    //These methods involve the other class
+    function addBook($book)
+    {
+        $GLOBALS['DB']->exec("INSERT INTO authors_books (book_id, author_id) VALUES (
+            {$book->getId()},
+            {$this->getId()}
+        );");
+    }
+
+    function getBooks()
+    {
+        $books_query = $GLOBALS['DB']->query(
+            "SELECT books.* FROM
+                authors JOIN authors_books ON (authors_books.author_id = authors.id)
+                        JOIN books    ON (authors_books.book_id = books.id)
+             WHERE authors.id = {$this->getId()};
+            "
+        );
+
+        $matching_books = array();
+        foreach ($books_query as $book) {
+            $title = $book['title'];
+            $genre = $book['genre'];
+            $new_book = new Book($title, $genre);
+            array_push($matching_books, $new_book);
+        }
+        return $matching_books;
+    }
+
     static function getAll()
     {
         $authors_query = $GLOBALS['DB']->query("SELECT * FROM authors;");

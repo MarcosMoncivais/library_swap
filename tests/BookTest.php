@@ -156,8 +156,8 @@
             $test_book->save();
 
             $name2 = "Billy Bartle-Barnaby";
-            $enroll_date2 = "2015-07-09";
-            $test_book2 = new Book($name2, $enroll_date2);
+            $genre2 = "2015-07-09";
+            $test_book2 = new Book($name2, $genre2);
             $test_book2->save();
 
             //Act

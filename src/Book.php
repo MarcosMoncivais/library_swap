@@ -60,7 +60,7 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM books WHERE id = {$this->getId()};");
-            //$GLOBALS['DB']->exec("DELETE FROM enrollments WHERE book_id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM checkouts WHERE book_id = {$this->getId()};");
         }
 
         // function getCourses()

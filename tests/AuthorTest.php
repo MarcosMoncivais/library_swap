@@ -130,38 +130,48 @@
             $this->assertEquals($test_author2, $result[0]);
         }
 
-        // function test_addStudent()
-        // {
-        //     //Arrange
-        //     $test_author = new Author("Fundamentals of Human Anatomy", "SEXY101");
-        //     $test_author->save();
-        //     $test_author2 = new Author("Organic Chemistry of Cannabinoids", "CHEM420");
-        //     $test_author2->save();
-        //     $test_student = new Student("Sarah", "2000-04-01");
-        //     $test_student->save();
-        //     //Act
-        //     $test_author->addStudent($test_student);
-        //     //Assert
-        //     $this->assertEquals($test_author->getStudents(), [$test_student]);
-        // }
-        // function test_getStudents()
-        // {
-        //     //Arrange
-        //     $test_author = new Author("Fundamentals of Human Anatomy", "SEXY101");
-        //     $test_author->save();
-        //     $test_author2 = new Author("Organic Chemistry of Cannabinoids", "CHEM420");
-        //     $test_author2->save();
-        //     $test_student = new Student("Sarah", "2000-04-01");
-        //     $test_student->save();
-        //     $test_student2 = new Student("JC", "0000-12-25");
-        //     $test_student2->save();
-        //     //Act
-        //     $test_author->addStudent($test_student);
-        //     $test_author->addStudent($test_student2);
-        //     $test_author2->addStudent($test_student);
-        //     //Assert
-        //     $this->assertEquals($test_author->getStudents(), [$test_student, $test_student2]);
-        // }
+        function test_addBook()
+        {
+            //Arrange
+            $test_author = new Author("J.K. Rowling");
+            $test_author->save();
+
+            $test_author2 = new Author("Harry Potter");
+            $test_author2->save();
+
+            $test_book = new Book("Harry Potter and the Dish Stone", "Non-fiction");
+            $test_book->save();
+
+            //Act
+            $test_author->addBook($test_book);
+
+            //Assert
+            $this->assertEquals($test_author->getBooks(), [$test_book]);
+        }
+
+        function test_getBooks()
+        {
+            //Arrange
+            $test_author = new Author("J.K. Rowling");
+            $test_author->save();
+
+            $test_author2 = new Author("Harry Potter");
+            $test_author2->save();
+
+            $test_book = new Book("Harry Potter and the Dish Stone", "Non-fiction");
+            $test_book->save();
+
+            $test_book2 = new Book("Kelli Potter and the Three Bananas", "Fanasty");
+            $test_book2->save();
+
+            //Act
+            $test_author->addBook($test_book);
+            $test_author->addBook($test_book2);
+            $test_author2->addBook($test_book);
+
+            //Assert
+            $this->assertEquals($test_author->getBooks(), [$test_book, $test_book2]);
+        }
     }
 
 ?>
