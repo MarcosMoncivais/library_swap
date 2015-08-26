@@ -2,3 +2,5 @@ To-do:
     - Test addAuthors() in BookTest.php
     - Test getAuthors() in BookTest.php
     *Check these functions in Book.php
+
+    We started to add views file. Go ahead an load up the localhost to see what the vision was.
