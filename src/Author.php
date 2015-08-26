@@ -60,7 +60,7 @@
     // {
     //     $students_query = $GLOBALS['DB']->query(
     //         "SELECT students.* FROM
-    //             courses JOIN enrollments ON (enrollments.course_id = courses.id)
+    //             author JOIN enrollments ON (enrollments.course_id = courses.id)
     //                     JOIN students    ON (enrollments.student_id = students.id)
     //          WHERE courses.id = {$this->getId()};
     //         "
@@ -93,18 +93,18 @@
         $GLOBALS['DB']->exec("DELETE FROM authors;");
     }
 
-    // static function find($search_id)
-    // {
-    //     $found_course = null;
-    //     $courses = Course::getAll();
-    //     foreach ($courses as $author) {
-    //         $course_id = $author->getId();
-    //         if ($course_id == $search_id) {
-    //             $found_course = $author;
-    //         }
-    //     }
-    //     return $found_course;
-    // }
+    static function find($search_id)
+    {
+        $found_author = null;
+        $author = Author::getAll();
+        foreach ($author as $author) {
+            $author_id = $author->getId();
+            if ($author_id == $search_id) {
+                $found_author = $author;
+            }
+        }
+        return $found_author;
+    }
 }
 
 ?>

@@ -94,20 +94,23 @@
             $this->assertEquals($new_name, $result[0]->getName());
         }
 
-        // function test_find()
-        // {
-        //     //Arrange
-        //     $name = "High Times";
-        //     $test_author = new Author($name);
-        //     $test_author->save();
-        //     $name2 = "Gavanese Jamelan";
-        //     $test_author2 = new Author($name2);
-        //     $test_author2->save();
-        //     //Act
-        //     $result = Author::find($test_author->getId());
-        //     //Assert
-        //     $this->assertEquals($test_author, $result);
-        // }
+        function test_find()
+        {
+            //Arrange
+            $name = "High Times";
+            $test_author = new Author($name);
+            $test_author->save();
+
+            $name2 = "Gavanese Jamelan";
+            $test_author2 = new Author($name2);
+            $test_author2->save();
+
+            //Act
+            $result = Author::find($test_author->getId());
+
+            //Assert
+            $this->assertEquals($test_author, $result);
+        }
 
         function test_delete()
         {
