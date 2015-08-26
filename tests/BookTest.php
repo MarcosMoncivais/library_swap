@@ -168,46 +168,46 @@
             $this->assertEquals($test_book2, $result[0]);
         }
 
-        // function test_addCourse()
-        // {
-        //     //Arrange
-        //     $test_book = new Book("World War Z", "Horror");
-        //     $test_book->save();
-        //
-        //     $test_course = new Author("High Times", "CHEM420");
-        //     $test_course->save();
-        //
-        //     //Act
-        //     $test_book->addCourse($test_course);
-        //
-        //     //Assert
-        //     $this->assertEquals($test_book->getCourses(), [$test_course]);
-        // }
-        //
-        // function test_getCourses()
-        // {
-        //     //Arrange
-        //     $test_book = new Book("World War Z", "Horror");
-        //     $test_book->save();
-        //
-        //     $test_book2 = new Book("Billy Bartle-Barnaby", "2015-07-09");
-        //     $test_book2->save();
-        //
-        //     $test_course = new Author("High Times", "CHEM420");
-        //     $test_course->save();
-        //
-        //     $test_course2 = new Author("Gavanese Jamelan", "MUSC69");
-        //     $test_course2->save();
-        //
-        //     //Act
-        //     $test_book->addCourse($test_course);
-        //     $test_book->addCourse($test_course2);
-        //     $test_book2->addCourse($test_course2);
-        //
-        //     //Assert
-        //     $this->assertEquals($test_book->getCourses(), [$test_course, $test_course2]);
-        //
-        // }
+        function test_addAuthor()
+        {
+            //Arrange
+            $test_book = new Book("World War Z", "Horror");
+            $test_book->save();
+
+            $test_author = new Author("High Times", "CHEM420");
+            $test_author->save();
+
+            //Act
+            $test_book->addAuthor($test_author);
+
+            //Assert
+            $this->assertEquals($test_book->getAuthors(), [$test_author]);
+        }
+
+        function test_getAuthors()
+        {
+            //Arrange
+            $test_book = new Book("World War Z", "Horror");
+            $test_book->save();
+
+            $test_book2 = new Book("Billy Bartle-Barnaby", "2015-07-09");
+            $test_book2->save();
+
+            $test_author = new Author("High Times", "CHEM420");
+            $test_author->save();
+
+            $test_author2 = new Author("Gavanese Jamelan", "MUSC69");
+            $test_author2->save();
+
+            //Act
+            $test_book->addAuthor($test_author);
+            $test_book->addAuthor($test_author2);
+            $test_book2->addAuthor($test_author2);
+
+            //Assert
+            $this->assertEquals($test_book->getAuthors(), [$test_author, $test_author2]);
+
+        }
 
     }
 

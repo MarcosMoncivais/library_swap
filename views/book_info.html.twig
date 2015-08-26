@@ -4,6 +4,29 @@
         <title>Book Information</title>
     </head>
     <body>
+        <div class="container">
+            <h2>Title: {{ book.getTitle }}</h2>
+            <h3>Genre: {{ book.getGenre }}</h3>
+            {% if authors is not empty %}
 
+                {% for author in authors %}
+                    <h4>Author: {{ author.getName }}</h4>
+                {% endfor %}
+
+            {% else %}
+            <p> <!--Blank paragraph if there is no author --> </p>
+            {% endif %}
+
+            <form action="/book_info/{{ book.getId }}" method="post">
+                <div class="form-group">
+
+                <label for="name">Author Name:</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Kelli Margarita">
+                </div>
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+
+        <button type="submit" class="btn btn-info btn-lrg"><a href="/">GO HOME</a></button>
+    </div>
     </body>
 </html>

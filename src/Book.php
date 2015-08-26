@@ -63,33 +63,33 @@
             $GLOBALS['DB']->exec("DELETE FROM checkouts WHERE book_id = {$this->getId()};");
         }
 
-        // function getCourses()
-        // {
-        //     $courses_query = $GLOBALS['DB']->query(
-        //         "SELECT courses.* FROM
-        //             books JOIN enrollments ON (enrollments.book_id = books.id)
-        //                      JOIN courses     ON (enrollments.course_id = courses.id)
-        //          WHERE books.id = {$this->getId()};
-        //         "
-        //     );
-        //     $matching_courses = array();
-        //     foreach ($courses_query as $course) {
-        //         $title = $course['title'];
-        //         $code = $course['code'];
-        //         $id = $course['id'];
-        //         $new_course = new Course($title, $code, $id);
-        //         array_push($matching_courses, $new_course);
-        //     }
-        //     return $matching_courses;
-        // }
+        function getAuthors()
+        {
+            $authors_query = $GLOBALS['DB']->query(
+                "SELECT authors.* FROM
+                    books JOIN authors_books ON (authors_books.book_id = books.id)
+                             JOIN authors ON (authors_books.course_id = authors.id)
+                 WHERE books.id = {$this->getId()};
+                "
+            );
+            
+            $matching_authors = array();
+            foreach ($authors_query as $author) {
+                $name = $author['name'];
+                $id = $author['id'];
+                $new_author = new Author($name, $id);
+                array_push($matching_authors, $new_author);
+            }
+            return $matching_authors;
+        }
 
-        // function addCourse($new_course)
-        // {
-        //     $GLOBALS['DB']->exec("INSERT INTO enrollments (book_id, course_id) VALUES(
-        //         {$this->getId()},
-        //         {$new_course->getId()}
-        //     );");
-        // }
+        function addAuthor($new_author)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO authors_books (book_id, author_id) VALUES(
+                {$this->getId()},
+                {$new_author->getId()}
+            );");
+        }
 
         static function getAll()
         {
@@ -108,8 +108,8 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM books;");
-            //if all books are gone, all enrollments should also be deleted
-            //$GLOBALS['DB']->exec("DELETE FROM enrollments;");
+            //if all books are gone, all authors_books should also be deleted
+            $GLOBALS['DB']->exec("DELETE FROM authors_books;");
         }
 
         static function find($search_id)

@@ -28,6 +28,11 @@
         return $app['twig']->render("index.html.twig", array('books' => Book::getAll(), 'authors' => Author::getAll()));
     });
 
+    $app->get("/book_info/{id}", function($id) use ($app) {
+        $book = Book::find($id);
+        return $app['twig']->render("book_info.html.twig", array('book' => $book));
+    });
+
     //Post Calls
     $app->post("/books", function() use ($app) {
         $title = $_POST['title'];
@@ -37,6 +42,18 @@
 
         return $app['twig']->render("books.html.twig", array('books' => Book::getAll()));
     });
+
+    $app->post("/book_info/{id}", function($id) use ($app) {
+        $name = $_POST['name'];
+        $author = new Author($name);
+        $author->save();
+
+        $book = Book::find($id);
+
+        return $app['twig']->render("book_info.html.twig", array('book' => $book, 'authors' => Author::getAll()));
+    });
+
+
 
     return $app;
 ?>

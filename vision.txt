@@ -1,0 +1,4 @@
+To-do:
+    - Test addAuthors() in BookTest.php
+    - Test getAuthors() in BookTest.php
+    *Check these functions in Book.php
