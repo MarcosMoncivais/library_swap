@@ -98,6 +98,28 @@
                 //Assert
                 $this->assertEquals($test_patron, $result);
             }
+
+            function testUpdate()
+            {
+                //Arrage
+                $id = null;
+                $name = 'Phil';
+                $phone = '8675309';
+                $test_patron = new Patron($name, $phone, $id);
+                $test_patron->save();
+
+                $new_name = "Marcos";
+                $new_phone = '7777777';
+
+                //Act
+                $test_patron->update('name', $new_name);
+                $test_patron->update('phone', $new_phone);
+
+                //Assert
+                $result = Patron::getAll();
+                $this->assertEquals([$result[0]->getName(), $result[0]->getPhone()], [$new_name, $new_phone]);
+
+            }
         }
 
 

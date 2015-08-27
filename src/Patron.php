@@ -74,5 +74,10 @@
             }
             return $found_patron;
         }
+
+        function update($field, $new_value)
+        {
+            $GLOBALS['DB']->exec("UPDATE patrons SET {$field} = '{$new_value}' WHERE id = {$this->getId()};");
+        }
     }
 ?>
