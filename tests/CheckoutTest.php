@@ -130,8 +130,36 @@
 
             //Assert
             $result = $test_checkout->getDueDate();
-            $this->assertEquals($new_due_date, $result);        }
-
+            $this->assertEquals($new_due_date, $result);
         }
+
+        function testDeleteCheckout()
+        {
+            //Arrange
+            $patron_id = 1;
+            $copy_id = 2;
+            $checkout_date = '2015-08-10';
+            $due_date = '2015-08-24';
+            $id = null;
+            $test_checkout = new Checkout($patron_id, $copy_id, $checkout_date, $due_date, $id);
+            $test_checkout->save();
+
+            $patron_id2 = 1;
+            $copy_id2 = 2;
+            $checkout_date2 = '2015-08-21';
+            $due_date2 = '2015-08-25';
+            $id2= null;
+            $test_checkout2 = new Checkout($patron_id2, $copy_id2, $checkout_date2, $due_date2, $id2);
+            $test_checkout2->save();
+            
+            //Act
+            $test_checkout->delete();
+
+            //Assert
+            $result = Checkout::getAll();
+            $this->assertEquals($test_checkout2, $result[0]);
+        }
+
+    }
 
 ?>

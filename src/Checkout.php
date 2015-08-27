@@ -112,6 +112,10 @@
             $this->setDueDate($new_due_date);
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM checkouts WHERE id = {$this->getId()};");
+        }
 
 
 
