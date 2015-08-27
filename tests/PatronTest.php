@@ -25,7 +25,7 @@
                 $id = null;
                 $name = 'Phil';
                 $phone = '8675309';
-                $test_patron = new Patron($id, $name, $phone);
+                $test_patron = new Patron($name, $phone, $id);
 
                 //Act
                 $test_patron->save();
@@ -33,6 +33,49 @@
                 //Assert
                 $result = Patron::getAll();
                 $this->assertEquals([$test_patron], $result);
+            }
+
+            function testGetAll()
+            {
+                //Arrange
+                $id =null;
+                $name = 'Phil';
+                $phone = '8675309';
+                $test_patron = new Patron($name, $phone, $id);
+                $test_patron->save();
+
+                $name2 = 'Marcos';
+                $phone2= '7777777';
+                $test_patron2 = new Patron($name2, $phone2, $id);
+                $test_patron2->save();
+
+                //Act
+                $result = Patron::getAll();
+
+                //Assert
+                $this->assertEquals([$test_patron, $test_patron2], $result);
+            }
+
+            function testDeleteAll()
+            {
+                //Arrange
+                $id = null;
+                $name = 'Phil';
+                $phone = '8675309';
+                $test_patron = new Patron($name, $phone, $id);
+                $test_patron->save();
+
+                $name2 = 'Marcos';
+                $phone2 = '7777777';
+                $test_patron2 = new Patron($name2, $phone2, $id);
+                $test_patron2->save();
+
+                //Act
+                Patron::deleteAll();
+
+                //Assert
+                $result = Patron::getAll();
+                $this->assertEquals([], $result);
             }
         }
 
