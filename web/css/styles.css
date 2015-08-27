@@ -1,0 +1,57 @@
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
+.bottom {
+    clear: both;
+}
+.center {
+    margin-left: 43%;
+    margin-top: 25px;
+}
+
+body {
+    background-color: #F1F2EB;
+    color: #323031;
+}
+.container {
+    width: 450px;
+}
+
+.small_focus {
+    background-color: rgba(113,117,98,.9);
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    border-radius: 40px;
+    margin-top: 40px;
+}
+
+.focus {
+    background-color: rgba(113,117,98,.9);
+    width: 100%
+    height: auto;
+    padding: 60px;
+    text-align: center;
+    border-radius: 40px;
+    margin-top: 40px;
+}
+
+.container h1 {
+    text-align: center;
+}
+.focus p {
+    line-height: 200px;
+    vertical-align: middle;
+}
+a {
+    color: #323031;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+}

@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="../css/styles.css">
+        <title>Library Catalog</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Librarian Portal</h1>
+
+            <div class='focus'>
+                {% if books is not empty %}
+                    <h4>Here are your books</h4>
+                    <ul>
+                        {% for book in books %}
+
+                            <li><a href="/book_info/{{ book.getId() }}"> {{ book.getTitle }}</a> ({{ book.getGenre }})</li>
+
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <h2>There are no books in your library!</h2>
+                {% endif %}
+            </div>
+
+            <a href="/"><button type="submit" class="center btn btn-success">Home</button></a>
+        </div>
+    </body>
+</html>

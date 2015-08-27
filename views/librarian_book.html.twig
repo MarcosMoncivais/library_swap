@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="../css/styles.css">
+        <title>Library Catalog</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Librarian Portal</h1>
+
+            <div class='focus'>
+                <h3>{{ book.getTitle }}</h3>
+
+                {% if authors is not empty %}
+                    <p>Contributors:</p>
+                    {% for author in authors %}
+                        <p>{{ author.getName }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p>There are no authors associated with this book!</p>
+                {% endif %}
+            </div>
+
+            <h4>Add an author to this book:</h4>
+
+            <form action='/add_author' method='post'>
+                <div class='form-group'>
+                    <input id='book_id' name='book_id' type='hidden' value='{{ book.getId }}'>
+                    <label for='author_id'>Select an Author</label>
+                    <select id='author_id' name='author_id' type='text'>
+                        {% for author in all_authors %}
+                            <option value="{{ author.getId }}">{{ author.getName }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type='submit' class="btn btn-success">Add an Author</button>
+            </form>
+            <p><a href="/librarian_books/{{ book.getId }}/edit">Edit this book</a></p>
+            <a href="/"><button type="submit" class="center btn btn-success">Home</button></a>
+        </div>
+    </body>
+</html>
