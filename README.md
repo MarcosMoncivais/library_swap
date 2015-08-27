@@ -2,7 +2,7 @@
 
 ##### Library Catalog using MySQL join table, 08/26/15
 
-#### By Sam Martinez & Kelli Sommerdyke
+#### By Sam Martinez, Kelli Sommerdyke, Marcos Moncivais, Phillip Shannon
 
 ## Description
 
@@ -39,7 +39,7 @@ PHP, phpMyAdmin, MySQL, PHPUnit, Silex, Twig, HTML, CSS, Bootstrap
 
 ### Legal
 
-Copyright (c) Ashlin Aronin and Deron Johnson
+Copyright (c) Sam Martinez, Kelli Sommerdyke, Marcos Moncivais, Phillip Shannon
 
 This software is licensed under the MIT license.
 
