@@ -120,6 +120,29 @@
                 $this->assertEquals([$result[0]->getName(), $result[0]->getPhone()], [$new_name, $new_phone]);
 
             }
+
+            function testDelete()
+
+            {
+                $id = null;
+                $name = 'Phil';
+                $phone = '8675309';
+                $test_patron = new Patron($name, $phone, $id);
+                $test_patron->save();
+
+                $name2 = 'Marcos';
+                $phone2 = '7777777';
+                $test_patron2 = new Patron($name2, $phone2, $id);
+                $test_patron2->save();
+
+                //Act
+                $result = Patron::getAll();
+
+                //Assert
+                $this->assertEquals([$test_patron, $test_patron2], $result);
+            }
+
+
         }
 
 

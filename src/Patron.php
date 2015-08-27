@@ -79,5 +79,10 @@
         {
             $GLOBALS['DB']->exec("UPDATE patrons SET {$field} = '{$new_value}' WHERE id = {$this->getId()};");
         }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM patrons WHERE id = {$this->getId()};");
+        }
     }
 ?>
