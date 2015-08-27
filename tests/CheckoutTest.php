@@ -113,6 +113,25 @@
             $this->assertEquals($test_checkout, $result);
         }
 
+        function testUpdate()
+        {
+            //Arrange
+            $patron_id = 1;
+            $copy_id = 2;
+            $checkout_date = '2015-08-10';
+            $due_date = '2015-08-24';
+            $id = null;
+            $test_checkout = new Checkout($patron_id, $copy_id, $checkout_date, $due_date, $id);
+            $test_checkout->save();
 
-    }
+            //Act
+            $new_due_date = '2015-08-20';
+            $test_checkout->update($new_due_date);
+
+            //Assert
+            $result = $test_checkout->getDueDate();
+            $this->assertEquals($new_due_date, $result);        }
+
+        }
+
 ?>
