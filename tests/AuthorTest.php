@@ -20,7 +20,7 @@
             Book::deleteAll();
         }
 
-        function test_getName()
+        function testGetName()
         {
             //Arrange
             $name = "J.K. Rowling";
@@ -32,7 +32,7 @@
         }
 
         //save test
-        function test_save()
+        function testSave()
         {
             //Arrange
             $name = "C.S. Lewis";
@@ -47,7 +47,7 @@
         }
 
         //getall test
-        function test_getAll()
+        function testGetAll()
         {
             //Arrange
             $name = "J.K. Rowling";
@@ -66,7 +66,7 @@
         }
 
         //delete all test
-        function test_deleteAll()
+        function testDeleteAll()
         {
             //Arrange
             $name = "J.K. Rowling";
@@ -83,7 +83,7 @@
             $this->assertEquals([], $result);
         }
 
-        function test_update()
+        function testUpdate()
         {
             //Arrange
             $name = "J.K. Rowling";
@@ -97,7 +97,7 @@
             $this->assertEquals($new_name, $result[0]->getName());
         }
 
-        function test_find()
+        function testFind()
         {
             //Arrange
             $name = "J.K. Rowling";
@@ -115,7 +115,7 @@
             $this->assertEquals($test_author, $result);
         }
 
-        function test_delete()
+        function testDelete()
         {
             //Arrange
             $name = "J.K. Rowling";
@@ -134,7 +134,7 @@
             $this->assertEquals($test_author2, $result[0]);
         }
 
-        function test_addBook()
+        function testAddBook()
         {
             //Arrange
             $test_author = new Author("J.K. Rowling");
@@ -150,7 +150,7 @@
             $this->assertEquals($test_author->getBooks(), [$test_book]);
         }
 
-        function test_getBooks()
+        function testGetBooks()
         {
             //Arrange
             $test_author = new Author("J.K. Rowling");
