@@ -87,5 +87,32 @@
             $result = Checkout::getAll();
             $this->assertEquals([], $result);
         }
+
+        function testFind()
+        {
+            //Arrange
+            $patron_id = 1;
+            $copy_id = 2;
+            $checkout_date = '2015-08-10';
+            $due_date = '2015-08-24';
+            $id = null;
+            $test_checkout = new Checkout($patron_id, $copy_id, $checkout_date, $due_date, $id);
+            $test_checkout->save();
+
+            $patron_id2 = 2;
+            $copy_id2 = 1;
+            $checkout_date2 = '2015-08-09';
+            $due_date2 = '2015-08-23';
+            $test_checkout2 = new Checkout($patron_id2, $copy_id2, $checkout_date2, $due_date2, $id);
+            $test_checkout2->save();
+
+            //Act
+            $result = Checkout::find($test_checkout->getId());
+
+            //Assert
+            $this->assertEquals($test_checkout, $result);
+        }
+
+
     }
 ?>

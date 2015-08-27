@@ -16,7 +16,10 @@
             $this->due_date = $due_date;
             $this->id = $id;
         }
-
+        function getId()
+        {
+            return $this->id;
+        }
         function getPatronId()
         {
             return $this->patron_id;
@@ -90,6 +93,20 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM checkouts;");
         }
+
+         static function find($search_id)
+         {
+             $found_checkout = null;
+             $all_checkouts = Checkout::getAll();
+             foreach ($all_checkouts as $checkout) {
+                 if ($checkout->getId() == $search_id) {
+                     $found_checkout = $checkout;
+                 }
+             }
+             return $found_checkout;
+         }
+
+
 
 
     }
