@@ -60,19 +60,19 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM books WHERE id = {$this->getId()};");
-            $GLOBALS['DB']->exec("DELETE FROM checkouts WHERE book_id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM authors_books WHERE book_id = {$this->getId()};");
         }
 
         function getAuthors()
         {
             $authors_query = $GLOBALS['DB']->query(
                 "SELECT authors.* FROM
-                    books JOIN authors_books ON (authors_books.book_id = books.id)
-                             JOIN authors ON (authors_books.course_id = authors.id)
+                    books JOIN authors_books ON (books.id = authors_books.book_id)
+                             JOIN authors ON (authors_books.author_id = authors.id)
                  WHERE books.id = {$this->getId()};
                 "
             );
-            
+
             $matching_authors = array();
             foreach ($authors_query as $author) {
                 $name = $author['name'];

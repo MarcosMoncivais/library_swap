@@ -47,7 +47,7 @@
     function delete()
     {
         $GLOBALS['DB']->exec("DELETE FROM authors WHERE id = {$this->getId()};");
-        $GLOBALS['DB']->exec("DELETE FROM books WHERE book_id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM authors_books WHERE author_id = {$this->getId()};");
     }
 
     //These methods involve the other class
@@ -63,7 +63,7 @@
     {
         $books_query = $GLOBALS['DB']->query(
             "SELECT books.* FROM
-                authors JOIN authors_books ON (authors_books.author_id = authors.id)
+                authors JOIN authors_books ON (authors.id = authors_books.author_id)
                         JOIN books ON (authors_books.book_id = books.id)
              WHERE authors.id = {$this->getId()};
             "
